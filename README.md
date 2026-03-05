@@ -24,23 +24,68 @@
 
 ## 🏗️ 核心架构 (Architecture)
 
-### 核心能力概览
-
-- **多 Agent 协作**：Orchestrator 统一调度 Scout / Analyst / Linguistic / Creative
-- **自愈爬虫框架**：Scout 具备脚本修复与持久化脚本记忆能力
-- **实时日志与任务状态**：WebSocket 推送 Agent 日志与执行进度
-- **热词与趋势采集**：定时采集多平台热词并计算趋势
-- **AI 创意工作流**：SEO 文案与媒体任务异步生成
+本项目采用 **Multi-Agent 协同架构**，实现了从 **数据感知 (Scout)** 到 **决策分析 (Analyst)** 再到 **创意生成 (Linguistic/Creative)** 的全流程闭环。系统核心由 **Orchestrator** 驱动，确保任务流转可控、可解释、可追溯。
 
 ```mermaid
-graph LR
-  U[User Input] --> O[Orchestrator]
-  O --> S[Scout]
-  S --> A[Analyst]
-  A --> L[Linguistic]
-  L --> C[Creative]
-  C --> W[WebSocket Logs]
-  W --> F[Frontend]
+graph TD
+    subgraph Client ["🖥️ Client Layer (Frontend)"]
+        UI[Vue3 Dashboard<br/>(Element Plus)]
+        WS_Client[WebSocket Client<br/>(Real-time Logs)]
+    end
+
+    subgraph Gateway ["🚪 API Gateway (FastAPI)"]
+        API[REST API Router]
+        Auth[Auth Middleware]
+        WS_Mgr[WebSocket Manager]
+    end
+
+    subgraph Core ["🧠 Orchestration Layer (The Brain)"]
+        Orchestrator[Orchestrator Agent]
+        Mission[Mission State Machine]
+    end
+
+    subgraph Agents ["🤖 Agent & Skill Layer"]
+        Scout[Scout Agent<br/>(Perception & Crawling)]
+        Analyst[Analyst Agent<br/>(Cognition & Scoring)]
+        Linguistic[Linguistic Agent<br/>(Copywriting)]
+        Creative[Creative Agent<br/>(Visual Generation)]
+    end
+
+    subgraph Data ["💾 Data & Infrastructure Layer"]
+        DB[(SQL Database<br/>Missions/Users/Configs)]
+        Redis[(Redis Cache<br/>Hot Data/WS PubSub)]
+        Scheduler[APScheduler<br/>(Cron Jobs)]
+    end
+
+    subgraph External ["🌐 External Ecosystem"]
+        Targets[Ozon / VK / YouTube]
+        LLM_API[LLM Providers<br/>(OpenAI/DeepSeek)]
+        Media_API[Media Gen APIs<br/>(Flux/Kling)]
+    end
+
+    %% Data Flow
+    UI -->|HTTP Request| API
+    UI -->|WS Connect| WS_Mgr
+    WS_Mgr -.->|Push Logs| WS_Client
+
+    API -->|Trigger| Orchestrator
+    Orchestrator -->|Manage Status| Mission
+    Orchestrator -->|Dispatch| Scout
+    Orchestrator -->|Dispatch| Analyst
+    Orchestrator -->|Dispatch| Linguistic
+    Orchestrator -->|Dispatch| Creative
+
+    %% Agent Actions
+    Scout -->|Crawl & Self-Heal| Targets
+    Scout -->|Store Script| DB
+    Analyst -->|Analyze| DB
+    Linguistic -->|Generate| LLM_API
+    Creative -->|Generate| Media_API
+
+    %% Infrastructure
+    Scheduler -->|Trigger Daily| Scout
+    Scheduler -->|Summarize| DB
+    DB <-->|Read/Write| Orchestrator
 ```
 
 ### 📂 目录结构解析
