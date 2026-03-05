@@ -1,0 +1,119 @@
+# ──────────────────────────────────────────────
+# Ingress：K8s 统一流量入口
+# 面试核心考点：Ingress 是什么？和 Service 有什么区别？
+#
+# Service（LoadBalancer 类型）：每个服务一个公网 IP，多个服务就要多个 IP，很贵
+# Ingress：集群只有一个公网入口（一个 IP），根据 URL 路径/域名做路由分发
+#           相当于 K8s 的"反向代理 + 路由器"
+#
+# 工作流程：
+# 用户请求 → [公网 IP] → [Ingress Controller(Nginx)] → [Service] → [Pod]
+#
+# 注意：Ingress 资源是"规则声明"，实际执行靠 Ingress Controller
+# 常见 Ingress Controller：nginx-ingress、traefik、AWS ALB Ingress Controller
+# ──────────────────────────────────────────────
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ozondemo-ingress
+  namespace: default
+  annotations:
+    # 指定使用 nginx 这个 Ingress Controller 来处理这个规则
+    kubernetes.io/ingress.class: "nginx"
+    # 正则路径重写：把 /api/(.+) 重写为 /$1（去掉 /api 前缀再转发给后端）
+    # 例如：用户请求 /api/v1/scout/items → 转发给后端时变成 /api/v1/scout/items
+    # nginx.ingress.kubernetes.io/rewrite-target: /$1
+    # 开启跨域（CORS）支持（如果后端没有自己处理的话）
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+spec:
+  rules:
+    # 面试考点：这里也可以按域名路由
+    # 例如：api.yourdomain.com → 后端，app.yourdomain.com → 前端
+    # 这里演示路径路由方式（Path-based routing）
+    - http:
+        paths:
+          # 【后端 API 路由】
+          # 所有 /api/ 开头的请求转发给后端 Service
+          - path: /api
+            pathType: Prefix     # Prefix = 前缀匹配（/api/xxx 都能匹配）
+            backend:
+              service:
+                name: backend-service
+                port:
+                  number: 8001
+
+          - path: /ai
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service
+                port:
+                  number: 8001
+
+          - path: /auth
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service
+                port:
+                  number: 8001
+
+          - path: /analysis
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service
+                port:
+                  number: 8001
+
+          - path: /admin
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service
+                port:
+                  number: 8001
+
+          - path: /market-trends
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service
+                port:
+                  number: 8001
+
+          - path: /shop-performance
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service
+                port:
+                  number: 8001
+
+          - path: /ws
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service
+                port:
+                  number: 8001
+
+          - path: /health
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service
+                port:
+                  number: 8001
+
+          # 【前端路由】
+          # / 放在最后，作为"兜底规则"（catch-all）
+          # Prefix: / 会匹配所有路径，Ingress 按从上到下的顺序匹配
+          # 更具体的路径（/api）先匹配，/ 最后兜底
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-service
+                port:
+                  number: 80

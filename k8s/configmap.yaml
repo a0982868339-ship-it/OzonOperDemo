@@ -1,0 +1,21 @@
+# ──────────────────────────────────────────────
+# ConfigMap：集中管理非敏感环境配置
+# 面试考点：ConfigMap vs Secret 的区别？
+# ConfigMap：存储普通文本配置（URL、开关、名称等）
+# Secret：存储敏感数据（密码、Token），会做 base64 编码
+# 两者都可以注入到 Pod 为环境变量或配置文件
+# ──────────────────────────────────────────────
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ozondemo-config          # ConfigMap 的名字，Deployment 里引用这个名字
+  namespace: default
+data:
+  # Key-Value 格式，等会儿在 Deployment 里用 envFrom 或 valueFrom 引入
+  REDIS_URL: "redis://redis-service:6379"
+  # 面试考点：为什么是 redis-service 而不是 redis 或 localhost？
+  # 在 K8s 中，Pod 间通信必须通过 Service！
+  # Service 名 = 集群内 DNS 名（自动由 CoreDNS 解析）
+  # redis-service 就是我们在 redis-service.yaml 里定义的 Service name
+  DATABASE_URL: "sqlite:////app/data/ozon_ai_tool.db"
+  PYTHONUNBUFFERED: "1"

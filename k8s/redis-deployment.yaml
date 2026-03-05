@@ -1,0 +1,71 @@
+# ──────────────────────────────────────────────
+# Redis Deployment + Service
+# 面试考点：Deployment 和 Service 是什么关系？
+# Deployment：管理 Pod 的"控制器"，确保指定数量的 Pod 在运行
+# Service：给一组 Pod 提供稳定的"访问入口"（虚拟 IP + DNS）
+#           因为 Pod 的 IP 会随重启而变，Service IP 不变
+# ──────────────────────────────────────────────
+
+# ─── Deployment ───
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+  namespace: default
+  labels:
+    app: redis
+spec:
+  replicas: 1          # Redis 主节点只启 1 个副本（主从/集群是进阶话题）
+  selector:
+    matchLabels:
+      app: redis       # Deployment 通过 Label 找到它管理的 Pod
+  template:            # Pod 模板：每个副本按这个模板创建
+    metadata:
+      labels:
+        app: redis     # Pod 的标签，要和 selector.matchLabels 一致
+    spec:
+      containers:
+        - name: redis
+          image: redis:7-alpine
+          ports:
+            - containerPort: 6379
+          # 资源限制（面试高频考点）
+          # requests：调度时保证给到的最低资源（Scheduler 用来选 Node）
+          # limits：  容器最多能用的资源（超过会被 throttle 或 OOM kill）
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "50m"       # 50m = 50 毫核 = 0.05 个 CPU 核
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+          # 存活探针（面试考点）
+          # livenessProbe：K8s 定期检测，失败就重启容器
+          # 和 healthcheck 的区别：
+          # - docker healthcheck 是 docker 引擎层面
+          # - K8s 的 livenessProbe 是 K8s 控制层面，失败会 kill + restart Pod
+          livenessProbe:
+            exec:
+              command: ["redis-cli", "ping"]
+            initialDelaySeconds: 15  # 等 15 秒后开始检查（让容器先启动）
+            periodSeconds: 20        # 每 20 秒检查一次
+
+---
+# ─── Service ───
+# 面试考点：Service 的类型
+# ClusterIP（默认）：只在集群内部可访问，用于服务间通信
+# NodePort：      在每个 Node 上开一个端口，集群外可访问（测试用）
+# LoadBalancer：  云平台自动创建外部负载均衡器（生产用）
+# ExternalName：  把 Service 映射到外部域名
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-service   # 这个名字就是其他 Pod 访问 Redis 的域名
+  namespace: default
+spec:
+  selector:
+    app: redis           # 通过 label 找到 Redis Pod
+  ports:
+    - port: 6379         # Service 暴露的端口
+      targetPort: 6379   # 转发到 Pod 的端口
+  type: ClusterIP        # 只在集群内部访问，外部不需要直连 Redis

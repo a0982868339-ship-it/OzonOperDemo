@@ -1,0 +1,108 @@
+# ──────────────────────────────────────────────
+# docker-compose.yml
+# 面试考点：docker-compose 是什么？
+# 答：用一个 YAML 文件描述多个容器的关系，一条命令 (docker-compose up) 全部启动
+# 适合本地开发和测试，生产环境用 K8s
+# ──────────────────────────────────────────────
+
+version: "3.9" # Compose 文件格式版本，3.9 是当前推荐版本
+
+# ══════════════════════════════════════════════
+# 服务定义（每个 service = 一个容器）
+# ══════════════════════════════════════════════
+services:
+
+  # ────────────────────────────────────────────
+  # Redis 服务（第三方依赖，优先启动）
+  # 面试考点：为什么 Redis 要单独一个容器？
+  # 答：职责分离。每个容器只做一件事（单一职责原则）
+  #     同时可以独立扩容、独立重启、独立升级版本
+  # ────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine # 直接用官方镜像，不用自己写 Dockerfile
+    container_name: ozondemo-redis
+    restart: unless-stopped # 容器崩溃自动重启（除非手动 stop）
+    ports:
+      - "6379:6379" # 宿主机端口:容器端口，本地调试可以直连 Redis
+    volumes:
+      - redis_data:/data # 挂载命名卷，Redis 数据持久化
+    healthcheck:
+      # 健康检查：定期 ping Redis，不健康时不让其他服务依赖它
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # ────────────────────────────────────────────
+  # 后端服务（FastAPI）
+  # ────────────────────────────────────────────
+  backend:
+    build:
+      context: . # Docker build 的根目录（项目根）
+      dockerfile: backend/Dockerfile # 指定 Dockerfile 路径
+    container_name: ozondemo-backend
+    restart: unless-stopped
+    ports:
+      - "8001:8001" # 暴露到宿主机，方便直接测试 API
+    environment:
+      # 面试考点：为什么不把配置写死在代码里？
+      # 答：12-Factor App 原则 —— 配置通过环境变量注入
+      # 同一个镜像 + 不同环境变量 = 可以部署到开发/测试/生产
+      - AUTH_SECRET=ozon-demo-secret-change-in-prod
+      - REDIS_URL=redis://redis:6379 # redis 是服务名，docker-compose 网络内自动解析
+      - DATABASE_URL=sqlite:////app/data/ozon_ai_tool.db
+      - PYTHONUNBUFFERED=1 # Python 输出不缓冲，日志实时显示
+    volumes:
+      # 挂载数据目录，SQLite 数据库持久化到宿主机
+      # 面试考点：容器是无状态的！数据必须挂载到外部
+      # 如果不挂载，容器删掉数据就没了
+      - ./data:/app/data
+    depends_on:
+      redis:
+        condition: service_healthy # 等 Redis 健康检查通过后再启动后端
+    # 面试考点：healthcheck 是什么？
+    # 答：K8s / compose 用它判断服务是否真正"就绪"
+    # 我们的 FastAPI 有 /health 接口，可以直接用
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8001/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s # 给应用 20 秒启动时间再开始检查
+
+  # ────────────────────────────────────────────
+  # 前端服务（Nginx 静态服务 + 反向代理）
+  # ────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend # 前端的 build context 是 frontend/ 目录
+      dockerfile: Dockerfile # Dockerfile 相对于 context 的路径
+    container_name: ozondemo-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+        # 宿主机 3000 → 容器 80（Nginx）
+        # 访问 http://localhost:3000 即可
+    depends_on:
+      backend:
+        condition: service_healthy # 等后端健康后再启 Nginx（避免白屏）
+
+# ══════════════════════════════════════════════
+# 网络（面试考点）
+# ══════════════════════════════════════════════
+# docker-compose 默认会创建一个"项目网络"
+# 同网络内的容器可以用服务名互相访问（内置 DNS）
+# 例如：后端代码里 redis://redis:6379，"redis" 就是服务名
+# 这就是为什么 nginx.conf 里写 proxy_pass http://backend:8001
+networks:
+  default:
+    name: ozondemo-network
+
+# ══════════════════════════════════════════════
+# 数据卷（面试考点）
+# ══════════════════════════════════════════════
+# 命名卷（named volume）：由 Docker 管理，比绑定挂载更安全
+# 适合 Redis 这样的中间件数据
+# SQLite 用 bind mount（./data:/app/data）更直观，方便直接查看文件
+volumes:
+  redis_data: # Redis 持久化数据

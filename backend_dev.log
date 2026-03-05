@@ -1,0 +1,1367 @@
+INFO:     Will watch for changes in these directories: ['/Users/yangtianjun/Desktop/ozondemo']
+INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+INFO:     Started reloader process [46561] using StatReload
+/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/pydantic/_internal/_fields.py:151: UserWarning: Field "model_id" has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/pydantic/_internal/_fields.py:151: UserWarning: Field "model_breakdown" has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+INFO:     Started server process [46581]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:61362 - "GET /admin/configs HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+  |     yield
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+  |     response_sent.set()
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 685, in __aexit__
+  |     raise BaseExceptionGroup(
+  | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/protocols/http/h11_impl.py", line 407, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 69, in __call__
+    |     return await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/applications.py", line 123, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response_sent.set()
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/contextlib.py", line 131, in __exit__
+    |     self.gen.throw(type, value, traceback)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/middleware/usage.py", line 22, in usage_logging_middleware
+    |     response = await call_next(request)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/exceptions.py", line 65, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 756, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 776, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 72, in app
+    |     response = await func(request)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/routing.py", line 269, in app
+    |     solved_result = await solve_dependencies(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 572, in solve_dependencies
+    |     solved_result = await solve_dependencies(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 602, in solve_dependencies
+    |     solved = await run_in_threadpool(call, **sub_values)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/concurrency.py", line 42, in run_in_threadpool
+    |     return await anyio.to_thread.run_sync(func, *args)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/to_thread.py", line 56, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 2364, in run_sync_in_worker_thread
+    |     return await future
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 864, in run
+    |     result = context.run(func, *args)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 59, in get_current_admin
+    |     payload = verify_jwt(token, secret)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 39, in verify_jwt
+    |     header = json.loads(b64url_decode(parts[0]).decode())
+    | UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 0: invalid start byte
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/protocols/http/h11_impl.py", line 407, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 69, in __call__
+    return await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/applications.py", line 123, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response_sent.set()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/middleware/usage.py", line 22, in usage_logging_middleware
+    response = await call_next(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 165, in call_next
+    raise app_exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/exceptions.py", line 65, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 756, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 776, in app
+    await route.handle(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/routing.py", line 269, in app
+    solved_result = await solve_dependencies(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 572, in solve_dependencies
+    solved_result = await solve_dependencies(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 602, in solve_dependencies
+    solved = await run_in_threadpool(call, **sub_values)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/concurrency.py", line 42, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 2364, in run_sync_in_worker_thread
+    return await future
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 864, in run
+    result = context.run(func, *args)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 59, in get_current_admin
+    payload = verify_jwt(token, secret)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 39, in verify_jwt
+    header = json.loads(b64url_decode(parts[0]).decode())
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 0: invalid start byte
+INFO:     127.0.0.1:61483 - "GET /admin/configs HTTP/1.1" 403 Forbidden
+INFO:     127.0.0.1:61496 - "GET /admin/configs HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+  |     yield
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+  |     response_sent.set()
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 685, in __aexit__
+  |     raise BaseExceptionGroup(
+  | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/protocols/http/h11_impl.py", line 407, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 69, in __call__
+    |     return await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/applications.py", line 123, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response_sent.set()
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/contextlib.py", line 131, in __exit__
+    |     self.gen.throw(type, value, traceback)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/middleware/usage.py", line 22, in usage_logging_middleware
+    |     response = await call_next(request)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/exceptions.py", line 65, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 756, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 776, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 72, in app
+    |     response = await func(request)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/routing.py", line 269, in app
+    |     solved_result = await solve_dependencies(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 572, in solve_dependencies
+    |     solved_result = await solve_dependencies(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 602, in solve_dependencies
+    |     solved = await run_in_threadpool(call, **sub_values)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/concurrency.py", line 42, in run_in_threadpool
+    |     return await anyio.to_thread.run_sync(func, *args)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/to_thread.py", line 56, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 2364, in run_sync_in_worker_thread
+    |     return await future
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 864, in run
+    |     result = context.run(func, *args)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 59, in get_current_admin
+    |     payload = verify_jwt(token, secret)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 39, in verify_jwt
+    |     header = json.loads(b64url_decode(parts[0]).decode())
+    | UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 0: invalid start byte
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/protocols/http/h11_impl.py", line 407, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 69, in __call__
+    return await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/applications.py", line 123, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response_sent.set()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/middleware/usage.py", line 22, in usage_logging_middleware
+    response = await call_next(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 165, in call_next
+    raise app_exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/exceptions.py", line 65, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 756, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 776, in app
+    await route.handle(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/routing.py", line 269, in app
+    solved_result = await solve_dependencies(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 572, in solve_dependencies
+    solved_result = await solve_dependencies(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 602, in solve_dependencies
+    solved = await run_in_threadpool(call, **sub_values)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/concurrency.py", line 42, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 2364, in run_sync_in_worker_thread
+    return await future
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 864, in run
+    result = context.run(func, *args)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 59, in get_current_admin
+    payload = verify_jwt(token, secret)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 39, in verify_jwt
+    header = json.loads(b64url_decode(parts[0]).decode())
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 0: invalid start byte
+INFO:     127.0.0.1:61512 - "GET /admin/prompts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61518 - "GET /admin/env/scheduler HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61517 - "GET /admin/env/platforms HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61528 - "GET /admin/users HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61533 - "GET /admin/prompts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61536 - "GET /admin/configs HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+  |     yield
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+  |     response_sent.set()
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 685, in __aexit__
+  |     raise BaseExceptionGroup(
+  | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/protocols/http/h11_impl.py", line 407, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 69, in __call__
+    |     return await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/applications.py", line 123, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response_sent.set()
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/contextlib.py", line 131, in __exit__
+    |     self.gen.throw(type, value, traceback)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/middleware/usage.py", line 22, in usage_logging_middleware
+    |     response = await call_next(request)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/exceptions.py", line 65, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 756, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 776, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 72, in app
+    |     response = await func(request)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/routing.py", line 269, in app
+    |     solved_result = await solve_dependencies(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 572, in solve_dependencies
+    |     solved_result = await solve_dependencies(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 602, in solve_dependencies
+    |     solved = await run_in_threadpool(call, **sub_values)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/concurrency.py", line 42, in run_in_threadpool
+    |     return await anyio.to_thread.run_sync(func, *args)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/to_thread.py", line 56, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 2364, in run_sync_in_worker_thread
+    |     return await future
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 864, in run
+    |     result = context.run(func, *args)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 59, in get_current_admin
+    |     payload = verify_jwt(token, secret)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 39, in verify_jwt
+    |     header = json.loads(b64url_decode(parts[0]).decode())
+    | UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 0: invalid start byte
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/protocols/http/h11_impl.py", line 407, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 69, in __call__
+    return await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/applications.py", line 123, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response_sent.set()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/middleware/usage.py", line 22, in usage_logging_middleware
+    response = await call_next(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 165, in call_next
+    raise app_exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/exceptions.py", line 65, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 756, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 776, in app
+    await route.handle(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/routing.py", line 269, in app
+    solved_result = await solve_dependencies(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 572, in solve_dependencies
+    solved_result = await solve_dependencies(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 602, in solve_dependencies
+    solved = await run_in_threadpool(call, **sub_values)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/concurrency.py", line 42, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 2364, in run_sync_in_worker_thread
+    return await future
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 864, in run
+    result = context.run(func, *args)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 59, in get_current_admin
+    payload = verify_jwt(token, secret)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 39, in verify_jwt
+    header = json.loads(b64url_decode(parts[0]).decode())
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 0: invalid start byte
+INFO:     127.0.0.1:61555 - "GET /admin/prompts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61561 - "GET /admin/env/scheduler HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61559 - "GET /admin/env/platforms HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61564 - "GET /admin/users HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61567 - "GET /admin/system/usage?days=7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61570 - "GET /admin/notices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61576 - "GET /admin/audit-logs?page=1&per_page=50 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61597 - "GET /admin/system/info HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61596 - "GET /admin/system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61607 - "GET /admin/configs HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+  |     yield
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+  |     response_sent.set()
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 685, in __aexit__
+  |     raise BaseExceptionGroup(
+  | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/protocols/http/h11_impl.py", line 407, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 69, in __call__
+    |     return await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/applications.py", line 123, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response_sent.set()
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/contextlib.py", line 131, in __exit__
+    |     self.gen.throw(type, value, traceback)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/middleware/usage.py", line 22, in usage_logging_middleware
+    |     response = await call_next(request)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/exceptions.py", line 65, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 756, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 776, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 72, in app
+    |     response = await func(request)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/routing.py", line 269, in app
+    |     solved_result = await solve_dependencies(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 572, in solve_dependencies
+    |     solved_result = await solve_dependencies(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 602, in solve_dependencies
+    |     solved = await run_in_threadpool(call, **sub_values)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/concurrency.py", line 42, in run_in_threadpool
+    |     return await anyio.to_thread.run_sync(func, *args)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/to_thread.py", line 56, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 2364, in run_sync_in_worker_thread
+    |     return await future
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 864, in run
+    |     result = context.run(func, *args)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 59, in get_current_admin
+    |     payload = verify_jwt(token, secret)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 39, in verify_jwt
+    |     header = json.loads(b64url_decode(parts[0]).decode())
+    | UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 0: invalid start byte
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/protocols/http/h11_impl.py", line 407, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 69, in __call__
+    return await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/applications.py", line 123, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response_sent.set()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/middleware/usage.py", line 22, in usage_logging_middleware
+    response = await call_next(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 165, in call_next
+    raise app_exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/exceptions.py", line 65, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 756, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 776, in app
+    await route.handle(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/routing.py", line 269, in app
+    solved_result = await solve_dependencies(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 572, in solve_dependencies
+    solved_result = await solve_dependencies(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 602, in solve_dependencies
+    solved = await run_in_threadpool(call, **sub_values)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/concurrency.py", line 42, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 2364, in run_sync_in_worker_thread
+    return await future
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 864, in run
+    result = context.run(func, *args)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 59, in get_current_admin
+    payload = verify_jwt(token, secret)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 39, in verify_jwt
+    header = json.loads(b64url_decode(parts[0]).decode())
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 0: invalid start byte
+INFO:     127.0.0.1:61683 - "GET /api/v1/admin/configs HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+  |     yield
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+  |     response_sent.set()
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 685, in __aexit__
+  |     raise BaseExceptionGroup(
+  | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/protocols/http/h11_impl.py", line 407, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 69, in __call__
+    |     return await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/applications.py", line 123, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response_sent.set()
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/contextlib.py", line 131, in __exit__
+    |     self.gen.throw(type, value, traceback)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/middleware/usage.py", line 22, in usage_logging_middleware
+    |     response = await call_next(request)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/exceptions.py", line 65, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 756, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 776, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 72, in app
+    |     response = await func(request)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/routing.py", line 269, in app
+    |     solved_result = await solve_dependencies(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 572, in solve_dependencies
+    |     solved_result = await solve_dependencies(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 602, in solve_dependencies
+    |     solved = await run_in_threadpool(call, **sub_values)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/concurrency.py", line 42, in run_in_threadpool
+    |     return await anyio.to_thread.run_sync(func, *args)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/to_thread.py", line 56, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 2364, in run_sync_in_worker_thread
+    |     return await future
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 864, in run
+    |     result = context.run(func, *args)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 59, in get_current_admin
+    |     payload = verify_jwt(token, secret)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 39, in verify_jwt
+    |     header = json.loads(b64url_decode(parts[0]).decode())
+    | UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 0: invalid start byte
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/protocols/http/h11_impl.py", line 407, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 69, in __call__
+    return await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/applications.py", line 123, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response_sent.set()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/middleware/usage.py", line 22, in usage_logging_middleware
+    response = await call_next(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 165, in call_next
+    raise app_exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/exceptions.py", line 65, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 756, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 776, in app
+    await route.handle(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/routing.py", line 269, in app
+    solved_result = await solve_dependencies(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 572, in solve_dependencies
+    solved_result = await solve_dependencies(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 602, in solve_dependencies
+    solved = await run_in_threadpool(call, **sub_values)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/concurrency.py", line 42, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 2364, in run_sync_in_worker_thread
+    return await future
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 864, in run
+    result = context.run(func, *args)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 59, in get_current_admin
+    payload = verify_jwt(token, secret)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 39, in verify_jwt
+    header = json.loads(b64url_decode(parts[0]).decode())
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 0: invalid start byte
+INFO:     127.0.0.1:61745 - "GET /admin/env/scheduler HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61744 - "GET /admin/env/platforms HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'backend/routers/env_config.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [46581]
+/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/pydantic/_internal/_fields.py:151: UserWarning: Field "model_id" has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/pydantic/_internal/_fields.py:151: UserWarning: Field "model_breakdown" has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+INFO:     Started server process [50564]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:62041 - "POST /admin/env/platforms/wb/test HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62048 - "POST /admin/env/platforms/yandex/test HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62194 - "POST /admin/env/platforms/wb/test HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62204 - "POST /admin/env/platforms/ozon/test HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62223 - "POST /admin/env/platforms/ozon/test HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'backend/services/collectors/ozon_collector.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [50564]
+/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/pydantic/_internal/_fields.py:151: UserWarning: Field "model_id" has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/pydantic/_internal/_fields.py:151: UserWarning: Field "model_breakdown" has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+INFO:     Started server process [56082]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'backend/services/collectors/ozon_collector.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [56082]
+/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/pydantic/_internal/_fields.py:151: UserWarning: Field "model_id" has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/pydantic/_internal/_fields.py:151: UserWarning: Field "model_breakdown" has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+INFO:     Started server process [56153]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:62442 - "POST /admin/env/platforms/ozon/test HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62454 - "POST /admin/env/platforms/wb/test HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62465 - "POST /admin/env/platforms/yandex/test HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'backend/services/collectors/ozon_collector.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [56153]
+/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/pydantic/_internal/_fields.py:151: UserWarning: Field "model_id" has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/pydantic/_internal/_fields.py:151: UserWarning: Field "model_breakdown" has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+INFO:     Started server process [58925]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:62593 - "POST /admin/env/platforms/ozon/test HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'backend/services/collectors/ozon_collector.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [58925]
+/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/pydantic/_internal/_fields.py:151: UserWarning: Field "model_id" has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/pydantic/_internal/_fields.py:151: UserWarning: Field "model_breakdown" has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+INFO:     Started server process [62003]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:62753 - "POST /admin/env/platforms/ozon/test HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62789 - "POST /admin/env/platforms/ozon/test HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49776 - "POST /admin/env/platforms/ozon/test HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49924 - "GET /admin/env/scheduler HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49923 - "GET /admin/env/platforms HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'backend/services/cache.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [62003]
+/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/pydantic/_internal/_fields.py:151: UserWarning: Field "model_id" has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/pydantic/_internal/_fields.py:151: UserWarning: Field "model_breakdown" has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+INFO:     Started server process [7491]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:54656 - "GET /admin/env-config HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:57631 - "GET /admin/env/scheduler HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57630 - "GET /admin/env/platforms HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57640 - "POST /admin/env/platforms/ozon/test HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57664 - "GET /admin/env-config HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:57718 - "GET /ai/tasks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57725 - "GET /admin/prompts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57732 - "GET /api/v1/admin/configs HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+  |     yield
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+  |     response_sent.set()
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 685, in __aexit__
+  |     raise BaseExceptionGroup(
+  | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/protocols/http/h11_impl.py", line 407, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 69, in __call__
+    |     return await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/applications.py", line 123, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response_sent.set()
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/contextlib.py", line 131, in __exit__
+    |     self.gen.throw(type, value, traceback)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/middleware/usage.py", line 22, in usage_logging_middleware
+    |     response = await call_next(request)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/exceptions.py", line 65, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 756, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 776, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 72, in app
+    |     response = await func(request)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/routing.py", line 269, in app
+    |     solved_result = await solve_dependencies(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 572, in solve_dependencies
+    |     solved_result = await solve_dependencies(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 602, in solve_dependencies
+    |     solved = await run_in_threadpool(call, **sub_values)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/concurrency.py", line 42, in run_in_threadpool
+    |     return await anyio.to_thread.run_sync(func, *args)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/to_thread.py", line 56, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 2364, in run_sync_in_worker_thread
+    |     return await future
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 864, in run
+    |     result = context.run(func, *args)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 59, in get_current_admin
+    |     payload = verify_jwt(token, secret)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 39, in verify_jwt
+    |     header = json.loads(b64url_decode(parts[0]).decode())
+    | UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 0: invalid start byte
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/protocols/http/h11_impl.py", line 407, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 69, in __call__
+    return await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/applications.py", line 123, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response_sent.set()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/middleware/usage.py", line 22, in usage_logging_middleware
+    response = await call_next(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 165, in call_next
+    raise app_exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/exceptions.py", line 65, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 756, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 776, in app
+    await route.handle(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/routing.py", line 269, in app
+    solved_result = await solve_dependencies(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 572, in solve_dependencies
+    solved_result = await solve_dependencies(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 602, in solve_dependencies
+    solved = await run_in_threadpool(call, **sub_values)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/concurrency.py", line 42, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 2364, in run_sync_in_worker_thread
+    return await future
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 864, in run
+    result = context.run(func, *args)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 59, in get_current_admin
+    payload = verify_jwt(token, secret)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 39, in verify_jwt
+    header = json.loads(b64url_decode(parts[0]).decode())
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 0: invalid start byte
+INFO:     127.0.0.1:57739 - "GET /admin/prompts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57746 - "GET /api/v1/admin/configs HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+  |     yield
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+  |     response_sent.set()
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 685, in __aexit__
+  |     raise BaseExceptionGroup(
+  | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/protocols/http/h11_impl.py", line 407, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 69, in __call__
+    |     return await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/applications.py", line 123, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response_sent.set()
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/contextlib.py", line 131, in __exit__
+    |     self.gen.throw(type, value, traceback)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/middleware/usage.py", line 22, in usage_logging_middleware
+    |     response = await call_next(request)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/exceptions.py", line 65, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 756, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 776, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 72, in app
+    |     response = await func(request)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/routing.py", line 269, in app
+    |     solved_result = await solve_dependencies(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 572, in solve_dependencies
+    |     solved_result = await solve_dependencies(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 602, in solve_dependencies
+    |     solved = await run_in_threadpool(call, **sub_values)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/concurrency.py", line 42, in run_in_threadpool
+    |     return await anyio.to_thread.run_sync(func, *args)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/to_thread.py", line 56, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 2364, in run_sync_in_worker_thread
+    |     return await future
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 864, in run
+    |     result = context.run(func, *args)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 59, in get_current_admin
+    |     payload = verify_jwt(token, secret)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 39, in verify_jwt
+    |     header = json.loads(b64url_decode(parts[0]).decode())
+    | UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 0: invalid start byte
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/protocols/http/h11_impl.py", line 407, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 69, in __call__
+    return await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/applications.py", line 123, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response_sent.set()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/middleware/usage.py", line 22, in usage_logging_middleware
+    response = await call_next(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 165, in call_next
+    raise app_exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/exceptions.py", line 65, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 756, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 776, in app
+    await route.handle(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/routing.py", line 269, in app
+    solved_result = await solve_dependencies(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 572, in solve_dependencies
+    solved_result = await solve_dependencies(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 602, in solve_dependencies
+    solved = await run_in_threadpool(call, **sub_values)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/concurrency.py", line 42, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 2364, in run_sync_in_worker_thread
+    return await future
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 864, in run
+    result = context.run(func, *args)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 59, in get_current_admin
+    payload = verify_jwt(token, secret)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 39, in verify_jwt
+    header = json.loads(b64url_decode(parts[0]).decode())
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 0: invalid start byte
+INFO:     127.0.0.1:57814 - "GET /ai/tasks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57817 - "GET /api/v1/admin/configs HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+  |     yield
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+  |     response_sent.set()
+  |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 685, in __aexit__
+  |     raise BaseExceptionGroup(
+  | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/protocols/http/h11_impl.py", line 407, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 69, in __call__
+    |     return await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/applications.py", line 123, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response_sent.set()
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/contextlib.py", line 131, in __exit__
+    |     self.gen.throw(type, value, traceback)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/middleware/usage.py", line 22, in usage_logging_middleware
+    |     response = await call_next(request)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/exceptions.py", line 65, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 756, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 776, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 72, in app
+    |     response = await func(request)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/routing.py", line 269, in app
+    |     solved_result = await solve_dependencies(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 572, in solve_dependencies
+    |     solved_result = await solve_dependencies(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 602, in solve_dependencies
+    |     solved = await run_in_threadpool(call, **sub_values)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/concurrency.py", line 42, in run_in_threadpool
+    |     return await anyio.to_thread.run_sync(func, *args)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/to_thread.py", line 56, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 2364, in run_sync_in_worker_thread
+    |     return await future
+    |   File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 864, in run
+    |     result = context.run(func, *args)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 59, in get_current_admin
+    |     payload = verify_jwt(token, secret)
+    |   File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 39, in verify_jwt
+    |     header = json.loads(b64url_decode(parts[0]).decode())
+    | UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 0: invalid start byte
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/protocols/http/h11_impl.py", line 407, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 69, in __call__
+    return await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/applications.py", line 123, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response_sent.set()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/middleware/usage.py", line 22, in usage_logging_middleware
+    response = await call_next(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 165, in call_next
+    raise app_exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/middleware/exceptions.py", line 65, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 756, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 776, in app
+    await route.handle(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/routing.py", line 269, in app
+    solved_result = await solve_dependencies(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 572, in solve_dependencies
+    solved_result = await solve_dependencies(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/fastapi/dependencies/utils.py", line 602, in solve_dependencies
+    solved = await run_in_threadpool(call, **sub_values)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/starlette/concurrency.py", line 42, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 2364, in run_sync_in_worker_thread
+    return await future
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 864, in run
+    result = context.run(func, *args)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 59, in get_current_admin
+    payload = verify_jwt(token, secret)
+  File "/Users/yangtianjun/Desktop/ozondemo/backend/security/auth.py", line 39, in verify_jwt
+    header = json.loads(b64url_decode(parts[0]).decode())
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 0: invalid start byte
+INFO:     127.0.0.1:57830 - "GET /admin/prompts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57842 - "GET /admin/env/scheduler HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57840 - "GET /admin/env/platforms HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57849 - "GET /admin/users HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57860 - "GET /admin/system/usage?days=7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57863 - "GET /admin/notices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57867 - "GET /admin/audit-logs?page=1&per_page=50 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57873 - "GET /admin/system/info HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57872 - "GET /admin/system/stats HTTP/1.1" 200 OK

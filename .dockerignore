@@ -1,0 +1,47 @@
+# ──────────────────────────────────────────────
+# .dockerignore 文件
+# 面试考点：为什么需要它？
+# 和 .gitignore 类似，告诉 Docker 哪些文件不用打包进镜像
+# 好处：1) 镜像更小  2) 构建更快  3) 避免泄露敏感信息
+# ──────────────────────────────────────────────
+
+# Python 虚拟环境（镜像里会重新安装，不需要本地的 venv）
+.venv
+venv
+env
+
+# Python 字节码缓存（自动生成，不需要）
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# 数据库文件（SQLite 数据库通过 Volume 挂载提供，不打包进镜像）
+# 原因：镜像应该是"无状态"的，数据要放在外部存储
+*.db
+*.sqlite
+*.sqlite3
+
+# 测试文件（生产镜像不需要）
+test_*.py
+tests/
+
+# 版本控制
+.git
+.gitignore
+
+# 前端构建产物（后端镜像不需要）
+frontend/node_modules
+frontend/dist
+
+# IDE 配置
+.idea
+.vscode
+*.swp
+
+# macOS 垃圾文件
+.DS_Store
+
+# 日志文件
+*.log
+logs/

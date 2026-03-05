@@ -1,0 +1,41 @@
+workflow:
+  name: ozon-demo
+  entry: orchestrator
+  steps:
+    - id: orchestrator
+      agent: orchestrator
+      input_map:
+        project_goal: ${input.project_goal}
+        time_range: ${input.time_range}
+        category: ${input.category}
+    - id: scout
+      agent: scout
+      input_map:
+        time_range: ${input.time_range}
+        category: ${input.category}
+        shop_orders: ${input.shop_orders}
+        products: ${input.products}
+    - id: analyst
+      agent: analyst
+      input_map:
+        hot_keywords: ${steps.scout.output.hot_keywords}
+        competition: ${steps.scout.output.competition}
+        shop_metrics: ${steps.scout.output.shop_metrics}
+    - id: creative
+      agent: creative
+      input_map:
+        product_name: ${input.product_name}
+        selling_points: ${input.selling_points}
+        platform: ${input.platform}
+        language: ${input.language}
+        analysis: ${steps.analyst.output}
+  output_map:
+    keywords: ${steps.scout.output.hot_keywords}
+    competition: ${steps.scout.output.competition}
+    cloud_words: ${steps.scout.output.cloud_words}
+    category_dashboard: ${steps.analyst.output.category_dashboard}
+    subcategory_ranking: ${steps.analyst.output.subcategory_ranking}
+    hot_cold: ${steps.analyst.output.hot_cold}
+    new_product_plan: ${steps.analyst.output.new_product_plan}
+    pricing_strategy: ${steps.analyst.output.pricing_strategy}
+    creative_assets: ${steps.creative.output}

@@ -1,0 +1,77 @@
+# ──────────────────────────────────────────────
+# 前端 Deployment + Service
+# ──────────────────────────────────────────────
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: default
+  labels:
+    app: frontend
+spec:
+  replicas: 2    # 2 个副本，负载均衡 + 高可用
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          # 实际使用时替换为你的镜像：
+          # image: registry.cn-hangzhou.aliyuncs.com/yournamespace/ozondemo-frontend:v1
+          image: ozondemo-frontend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "10m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+
+          # Nginx 静态服务很快就能就绪，探针设置可以更激进
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 20
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  namespace: default
+spec:
+  selector:
+    app: frontend
+  ports:
+    - port: 80
+      targetPort: 80
+  # 面试考点：为什么前端用 ClusterIP 而不是 LoadBalancer？
+  # 因为我们有 Ingress 统一做流量入口和路由
+  # Ingress → ClusterIP Service → Pod
+  # 这样只需要一个 LoadBalancer（给 Ingress 用），节省云资源费用
+  type: ClusterIP

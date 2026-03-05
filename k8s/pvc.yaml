@@ -1,0 +1,26 @@
+# ──────────────────────────────────────────────
+# PersistentVolumeClaim（PVC）：持久化存储声明
+# 面试考点：为什么 K8s 需要 PVC？
+# 答：Pod 是短暂的（重启后文件消失），PVC 让数据持久化到外部存储
+# PVC 是"我需要多少存储"的声明，K8s 自动去找匹配的 PV（物理存储）
+# ──────────────────────────────────────────────
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sqlite-data-pvc
+  namespace: default
+spec:
+  # 访问模式：
+  # ReadWriteOnce (RWO)：同时只有一个 Node 可以挂载读写
+  # ReadOnlyMany  (ROX)：多个 Node 可以同时只读
+  # ReadWriteMany (RWX)：多个 Node 可以同时读写（需要特殊存储如 NFS、EFS）
+  # SQLite 只能单进程写入，所以用 ReadWriteOnce
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi     # 申请 1GB 存储空间
+  # storageClassName 不指定 = 使用集群默认的 StorageClass
+  # 在 minikube 上默认是 standard（本地存储）
+  # 在 AWS 上默认是 gp2（EBS 磁盘）
+  # 在 GCP 上是 standard（Persistent Disk）

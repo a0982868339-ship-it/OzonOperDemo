@@ -1,0 +1,117 @@
+# ──────────────────────────────────────────────
+# 后端 Deployment + Service
+# 面试核心考点：
+#   - 滚动更新（Rolling Update）是如何做到零停机的？
+#   - 存活/就绪探针的区别？
+#   - 环境变量如何从 ConfigMap/Secret 注入？
+# ──────────────────────────────────────────────
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: default
+  labels:
+    app: backend
+spec:
+  replicas: 2    # 2 个副本，实现高可用；一个挂了另一个继续服务
+
+  # 【滚动更新策略（面试重点）】
+  # 面试题：K8s 如何做到不停机更新（Rolling Update）？
+  # 答：新版本 Pod 启动时，先增加新 Pod，再逐步减少旧 Pod
+  #     maxSurge=1：更新时最多允许比目标多 1 个 Pod（先起新的）
+  #     maxUnavailable=0：更新时最多允许 0 个不可用（保证服务不中断）
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          # 实际使用时替换为你的镜像仓库，例如：
+          # image: registry.cn-hangzhou.aliyuncs.com/yournamespace/ozondemo-backend:v1
+          image: ozondemo-backend:latest
+          imagePullPolicy: IfNotPresent  # 本地有就用本地的，不重复拉取
+          ports:
+            - containerPort: 8001
+
+          # 【环境变量注入（面试考点）】
+          # envFrom：批量导入 ConfigMap/Secret 里的所有 key=value 为环境变量
+          envFrom:
+            - configMapRef:
+                name: ozondemo-config      # 引用 configmap.yaml 里定义的
+            - secretRef:
+                name: ozondemo-secret      # 引用 secret.yaml 里定义的
+
+          # 资源配额
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+
+          # 【存活探针 vs 就绪探针（最重要的面试考点之一）】
+          # livenessProbe（存活探针）：
+          #   - 检测容器是否"还活着"
+          #   - 失败：K8s 杀掉 Pod 并重启它
+          #   - 适合检测死锁、内存溢出等无法自愈的故障
+          livenessProbe:
+            httpGet:
+              path: /health      # 我们的 FastAPI 已经有这个端点
+              port: 8001
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            failureThreshold: 3  # 连续失败 3 次才重启
+
+          # readinessProbe（就绪探针）：
+          #   - 检测容器是否"准备好接收流量"
+          #   - 失败：从 Service 的 Endpoints 中移除这个 Pod（不再给它发请求）
+          #           但不会重启 Pod！
+          #   - 适合检测：应用启动中、依赖服务未就绪、临时过载等情况
+          # 关键区别：
+          #   liveness 失败 → 重启 Pod
+          #   readiness 失败 → 停止给 Pod 发流量（但 Pod 继续运行）
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8001
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            failureThreshold: 3
+
+          # 【数据卷挂载】
+          volumeMounts:
+            - name: sqlite-storage
+              mountPath: /app/data    # 挂载到容器内的这个路径
+
+      # 声明使用的卷
+      volumes:
+        - name: sqlite-storage
+          persistentVolumeClaim:
+            claimName: sqlite-data-pvc    # 引用 pvc.yaml 里定义的 PVC
+
+---
+# Service（ClusterIP，只在集群内访问）
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: default
+spec:
+  selector:
+    app: backend
+  ports:
+    - port: 8001
+      targetPort: 8001
+  type: ClusterIP

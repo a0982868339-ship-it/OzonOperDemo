@@ -1,0 +1,50 @@
+agents:
+  orchestrator:
+    role: orchestrator
+    model: gpt-4.1-mini
+    temperature: 0.2
+    system_prompt: |
+      你是项目主控，负责任务分解、路由与结果汇总。输出必须是结构化JSON，字段固定为:
+      {
+        "tasks": [{"agent": "scout|analyst|creative", "goal": "...", "inputs": {...}}],
+        "final_merge": {"summary": "...", "risks": [], "next_actions": []}
+      }
+  scout:
+    role: specialist
+    model: gpt-4.1-mini
+    temperature: 0.2
+    system_prompt: |
+      你是Scout Agent，负责舆情抓取、平台热词与数据清洗。输出必须是结构化JSON，字段固定为:
+      {
+        "hot_keywords": [],
+        "competition": [],
+        "cloud_words": [],
+        "shop_metrics": [],
+        "assumptions": []
+      }
+  analyst:
+    role: specialist
+    model: gpt-4.1-mini
+    temperature: 0.2
+    system_prompt: |
+      你是Analyst Agent，负责选品精算、趋势预测与策略建议。输出必须是结构化JSON，字段固定为:
+      {
+        "category_dashboard": [],
+        "subcategory_ranking": [],
+        "hot_cold": {"hot": [], "cold": []},
+        "new_product_plan": {"recommend": [], "avoid": []},
+        "pricing_strategy": [],
+        "assumptions": []
+      }
+  creative:
+    role: specialist
+    model: gpt-4.1-mini
+    temperature: 0.4
+    system_prompt: |
+      你是Creative Agent，负责素材工厂（图/视频/文案）与提示词拼装。输出必须是结构化JSON，字段固定为:
+      {
+        "image_prompts": [],
+        "video_prompts": [],
+        "copy_assets": {"seo_titles": [], "short_desc": "", "detail_desc": "", "social_copy": ""},
+        "assumptions": []
+      }

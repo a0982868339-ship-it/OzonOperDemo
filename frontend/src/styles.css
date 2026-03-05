@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#app {
+  height: 100%;
+  font-family: "Inter", system-ui, sans-serif;
+  @apply transition-colors duration-300;
+}
+
+/* Dark mode global overrides */
+html.dark body {
+  @apply bg-slate-900 text-slate-100;
+}
