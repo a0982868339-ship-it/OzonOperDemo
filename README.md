@@ -28,39 +28,39 @@
 
 ```mermaid
 graph TD
-    subgraph Client ["🖥️ Client Layer (Frontend)"]
-        UI[Vue3 Dashboard<br/>(Element Plus)]
-        WS_Client[WebSocket Client<br/>(Real-time Logs)]
+    subgraph Client [Client Layer Frontend]
+        UI[Vue3 Dashboard<br>Element Plus]
+        WS_Client[WebSocket Client<br>Real-time Logs]
     end
 
-    subgraph Gateway ["🚪 API Gateway (FastAPI)"]
+    subgraph Gateway [API Gateway FastAPI]
         API[REST API Router]
         Auth[Auth Middleware]
         WS_Mgr[WebSocket Manager]
     end
 
-    subgraph Core ["🧠 Orchestration Layer (The Brain)"]
+    subgraph Core [Orchestration Layer The Brain]
         Orchestrator[Orchestrator Agent]
         Mission[Mission State Machine]
     end
 
-    subgraph Agents ["🤖 Agent & Skill Layer"]
-        Scout[Scout Agent<br/>(Perception & Crawling)]
-        Analyst[Analyst Agent<br/>(Cognition & Scoring)]
-        Linguistic[Linguistic Agent<br/>(Copywriting)]
-        Creative[Creative Agent<br/>(Visual Generation)]
+    subgraph Agents [Agent and Skill Layer]
+        Scout[Scout Agent<br>Perception and Crawling]
+        Analyst[Analyst Agent<br>Cognition and Scoring]
+        Linguistic[Linguistic Agent<br>Copywriting]
+        Creative[Creative Agent<br>Visual Generation]
     end
 
-    subgraph Data ["💾 Data & Infrastructure Layer"]
-        DB[(SQL Database<br/>Missions/Users/Configs)]
-        Redis[(Redis Cache<br/>Hot Data/WS PubSub)]
-        Scheduler[APScheduler<br/>(Cron Jobs)]
+    subgraph Data [Data and Infrastructure Layer]
+        DB[(SQL Database<br>Missions/Users/Configs)]
+        Redis[(Redis Cache<br>Hot Data/WS PubSub)]
+        Scheduler[APScheduler<br>Cron Jobs]
     end
 
-    subgraph External ["🌐 External Ecosystem"]
+    subgraph External [External Ecosystem]
         Targets[Ozon / VK / YouTube]
-        LLM_API[LLM Providers<br/>(OpenAI/DeepSeek)]
-        Media_API[Media Gen APIs<br/>(Flux/Kling)]
+        LLM_API[LLM Providers<br>OpenAI/DeepSeek]
+        Media_API[Media Gen APIs<br>Flux/Kling]
     end
 
     %% Data Flow
@@ -76,7 +76,7 @@ graph TD
     Orchestrator -->|Dispatch| Creative
 
     %% Agent Actions
-    Scout -->|Crawl & Self-Heal| Targets
+    Scout -->|Crawl and Self-Heal| Targets
     Scout -->|Store Script| DB
     Analyst -->|Analyze| DB
     Linguistic -->|Generate| LLM_API
