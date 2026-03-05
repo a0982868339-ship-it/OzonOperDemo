@@ -99,7 +99,60 @@ ARCHITECTURE.md  架构说明与设计文档
 
 ---
 
-## 🧠 底层逻辑拆解 (Under the Hood)
+## 🧠 4+1 协同模式与 OpenClaw 框架 (Under the Hood)
+
+本项目基于 **OpenClaw** 开源框架构建，采用经典的 **"4+1" 智能体协同模式**。即 **1 个总控大脑 (Orchestrator)** 指挥 **4 个专业职能 Agent**，通过标准化协议进行高效协作。
+
+### 🛡️ 核心：OpenClaw 框架
+
+> OpenClaw 是专为电商出海场景设计的 Agent 编排框架，旨在解决跨平台数据割裂、多语言文化隔阂以及创意生产流程繁琐的问题。
+
+其核心特性包括：
+- **Mission State Machine**: 将复杂的业务流程封装为可观测、可回滚的状态机。
+- **Self-Healing Crawlers**: 内置自愈能力的爬虫组件，自动应对反爬策略变化。
+- **Logged LLM Gateway**: 统一的 LLM 接入层，支持多模型路由、成本核算与审计日志。
+- **Real-time Feedback**: 基于 WebSocket 的全链路实时反馈机制。
+
+---
+
+### 🤖 Agent 职能详解 (The 4+1 Model)
+
+#### 1. 🧠 Orchestrator Agent (总控大脑)
+**"指挥官"** — 负责意图理解、任务拆解与全局调度。
+- **意图解析**: 将用户模糊的自然语言指令（如"帮我看看最近Ozon上什么猫粮好卖"）转化为结构化的 Mission Plan。
+- **Pipeline 调度**: 维护任务状态机，按需激活下游 Agent（Scout → Analyst → Linguistic → Creative），处理异常与重试。
+- **质量守门**: 对各环节产出进行一致性校验，防止"幻觉"传递。
+- **关键代码**: [`backend/agents/orchestrator_agent.py`](backend/agents/orchestrator_agent.py)
+
+#### 2. 🕵️ Scout Agent (情报侦察兵)
+**"侦察兵"** — 负责跨平台数据采集与清洗。
+- **多源采集**: 支持 Ozon, Wildberries, VK, YouTube, Google Trends 等多平台数据源。
+- **自愈机制**: 当采集脚本失效时，能够读取错误日志，利用 LLM 自动修复选择器代码并验证，实现"无人值守"维护。
+- **记忆脚本**: 修复成功的脚本会自动存入数据库，作为下次采集的优先策略。
+- **关键代码**: [`backend/agents/scout_agent.py`](backend/agents/scout_agent.py)
+
+#### 3. 📊 Analyst Agent (数据分析师)
+**"精算师"** — 负责数据挖掘与商业价值评估。
+- **供需算法**: 计算 **Unified Score** (供需比评分)，结合搜索量、竞品数、增长率等指标，量化市场机会。
+- **LLM 洞察**: 基于算法结果，生成人类可读的商业洞察报告（如"蓝海市场，建议入场"或"红海竞争，慎重考虑"）。
+- **竞争格局**: 分析价格带分布与头部卖家垄断程度。
+- **关键代码**: [`backend/agents/analyst_agent.py`](backend/agents/analyst_agent.py)
+
+#### 4. ✍️ Linguistic Agent (语言专家)
+**"文案大师"** — 负责本地化文案创作与 SEO 优化。
+- **RAG 增强**: 内置俄语电商高频词库与热销商品语料库，确保用词地道。
+- **SEO 优化**: 自动埋入高流量关键词，生成符合 Ozon 算法权重的标题与描述。
+- **多场景适配**: 可生成商品详情页 (PDP)、社交媒体推文 (SMM) 等不同风格文案。
+- **关键代码**: [`backend/agents/linguistic_agent.py`](backend/agents/linguistic_agent.py)
+
+#### 5. 🎨 Creative Agent (视觉设计师)
+**"艺术家"** — 负责视觉创意与多媒体生成。
+- **Prompt Engineering**: 将商品卖点转化为专业的 AI 绘画/视频提示词 (Prompt)。
+- **多模态生成**: 对接 Flux/Midjourney 生成商品场景图，对接 Kling/Runway 生成短视频素材。
+- **审美本地化**: 针对俄罗斯市场审美偏好（如色调、模特特征）进行针对性优化。
+- **关键代码**: [`backend/agents/creative_agent.py`](backend/agents/creative_agent.py)
+
+---
 
 ### Agent 框架与运行机制
 
