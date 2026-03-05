@@ -18,7 +18,7 @@
 
 ## 📺 演示视频 (Demo)
 
-![Uploading OZON智能运营demo演示.gif…]()
+![OZON智能运营demo演示](https://github.com/user-attachments/assets/1d1c1a0e-f4f6-4640-9335-06022c5ca80f)
 
 ---
 
